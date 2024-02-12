@@ -14,7 +14,7 @@ actions are as follows:
 "down" = moves down
 "left" = moves left
 "right" = moves right
-"block" or "defend" = grants invulnerability that cycle and the one after, brakes when attacked
+"block" or "defend" = grants invulnerability that cycle and the one after, breaks when attacked
 "attack" = attacks
  */
 public class Main {
