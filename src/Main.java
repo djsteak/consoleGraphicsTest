@@ -57,125 +57,132 @@ public class Main {
             System.out.println("blue");// says whos turn it is
             String input = in.nextLine(); // then gets the input
             System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");// just hides the last players input
-            if (input.equals("up")){ // if up
-                int targetY = playerY - 1; // then the y is decreased by one, as the game array starts at 0,0 in the top left
-                if (targetY >= 0) { // prevents the player from going out of bounds
-                    //System.out.println(funnyConsoleExtras.ANSI_GREEN + input + funnyConsoleExtras.ANSI_RESET);
-                    //System.out.println(idk.getCellType(playerX, targetY, 0));
-                    if (idk.getCellType(playerX, targetY, 0) == 3 && idk.getCellType(playerX, targetY, 1) != 4) {// player cannot move into cells that have certain states (see CellTypes)
+            switch (input) {
+                case "up" -> { // if up
+                    int targetY = playerY - 1; // then the y is decreased by one, as the game array starts at 0,0 in the top left
+
+                    if (targetY >= 0) { // prevents the player from going out of bounds
+                        //System.out.println(funnyConsoleExtras.ANSI_GREEN + input + funnyConsoleExtras.ANSI_RESET);
                         //System.out.println(idk.getCellType(playerX, targetY, 0));
-                        idk.changeCell(playerX,targetY,CellTypes.playerSpec, CellTypes.hash, 2, 1); // adds player type to the new cell
-                        idk.changeCell(playerX,playerY,CellTypes.baseSpec, CellTypes.hash, 0, 1); // removes player type from old cell
-                        playerY -= 1;
+                        if (idk.getCellType(playerX, targetY, 0) == 3 && idk.getCellType(playerX, targetY, 1) != 4) {// player cannot move into cells that have certain states (see CellTypes)
+                            //System.out.println(idk.getCellType(playerX, targetY, 0));
+                            idk.changeCell(playerX, targetY, CellTypes.playerSpec, CellTypes.hash, 2, 1); // adds player type to the new cell
+                            idk.changeCell(playerX, playerY, CellTypes.baseSpec, CellTypes.hash, 0, 1); // removes player type from old cell
+                            playerY -= 1;
+                        }
                     }
                 }
-            } else if (input.equals("down")) {
-                int targetY = playerY + 1;
-                if (targetY < sizeY) {
-                    //System.out.println(funnyConsoleExtras.ANSI_GREEN + input + funnyConsoleExtras.ANSI_RESET);
-                    //System.out.println(idk.getCellType(playerX, targetY, 0));
-                    if (idk.getCellType(playerX, targetY, 0) == 3 && idk.getCellType(playerX, targetY, 1) != 4) {
+                case "down" -> {
+                    int targetY = playerY + 1;
+                    if (targetY < sizeY) {
+                        //System.out.println(funnyConsoleExtras.ANSI_GREEN + input + funnyConsoleExtras.ANSI_RESET);
                         //System.out.println(idk.getCellType(playerX, targetY, 0));
-                        idk.changeCell(playerX,targetY,CellTypes.playerSpec, CellTypes.hash, 2, 1);
-                        idk.changeCell(playerX,playerY,CellTypes.baseSpec, CellTypes.hash, 0, 1);
-                        playerY += 1;
+                        if (idk.getCellType(playerX, targetY, 0) == 3 && idk.getCellType(playerX, targetY, 1) != 4) {
+                            //System.out.println(idk.getCellType(playerX, targetY, 0));
+                            idk.changeCell(playerX, targetY, CellTypes.playerSpec, CellTypes.hash, 2, 1);
+                            idk.changeCell(playerX, playerY, CellTypes.baseSpec, CellTypes.hash, 0, 1);
+                            playerY += 1;
+                        }
                     }
                 }
-            } else if (input.equals("left")) {
-                int targetX = playerX - 1;
-                if (targetX >= 0) {
-                    //System.out.println(funnyConsoleExtras.ANSI_GREEN + input + funnyConsoleExtras.ANSI_RESET);
-                    //System.out.println(idk.getCellType(targetX, playerY, 0));
-                    if (idk.getCellType(targetX, playerY, 0) == 3 && idk.getCellType(targetX, playerY, 1) != 4) {
+                case "left" -> {
+                    int targetX = playerX - 1;
+                    if (targetX >= 0) {
+                        //System.out.println(funnyConsoleExtras.ANSI_GREEN + input + funnyConsoleExtras.ANSI_RESET);
                         //System.out.println(idk.getCellType(targetX, playerY, 0));
-                        idk.changeCell(targetX,playerY,CellTypes.playerSpec, CellTypes.hash, 2, 1);
-                        idk.changeCell(playerX,playerY,CellTypes.baseSpec, CellTypes.hash, 0, 1);
-                        playerX -= 1;
+                        if (idk.getCellType(targetX, playerY, 0) == 3 && idk.getCellType(targetX, playerY, 1) != 4) {
+                            //System.out.println(idk.getCellType(targetX, playerY, 0));
+                            idk.changeCell(targetX, playerY, CellTypes.playerSpec, CellTypes.hash, 2, 1);
+                            idk.changeCell(playerX, playerY, CellTypes.baseSpec, CellTypes.hash, 0, 1);
+                            playerX -= 1;
+                        }
                     }
                 }
-            } else if (input.equals("right")) {
-                int targetX = playerX + 1;
-                if (targetX < sizeX) {
-                    //System.out.println(funnyConsoleExtras.ANSI_GREEN + input + funnyConsoleExtras.ANSI_RESET);
-                    //System.out.println(idk.getCellType(targetX, playerY, 0));
-                    if (idk.getCellType(targetX, playerY, 0) == 3 && idk.getCellType(targetX, playerY, 1) != 4) {
+                case "right" -> {
+                    int targetX = playerX + 1;
+                    if (targetX < sizeX) {
+                        //System.out.println(funnyConsoleExtras.ANSI_GREEN + input + funnyConsoleExtras.ANSI_RESET);
                         //System.out.println(idk.getCellType(targetX, playerY, 0));
-                        idk.changeCell(targetX,playerY,CellTypes.playerSpec, CellTypes.hash, 2, 1);
-                        idk.changeCell(playerX,playerY,CellTypes.baseSpec, CellTypes.hash, 0, 1);
-                        playerX += 1;
+                        if (idk.getCellType(targetX, playerY, 0) == 3 && idk.getCellType(targetX, playerY, 1) != 4) {
+                            //System.out.println(idk.getCellType(targetX, playerY, 0));
+                            idk.changeCell(targetX, playerY, CellTypes.playerSpec, CellTypes.hash, 2, 1);
+                            idk.changeCell(playerX, playerY, CellTypes.baseSpec, CellTypes.hash, 0, 1);
+                            playerX += 1;
+                        }
                     }
                 }
-            } else if (input.equals("debug")) {
-                debug = !debug;
-            } else if (input.equals("attack")) {
-                plr1atk = true;
-            } else if (input.equals("block") || input.equals("defend")) {
-                idk.setBlock(playerX,playerY);
-                playerBlock = 2;
-            } else if (input.equals("mine")) {
-                idk.mine(false,true,playerX,playerY);
+                case "debug" -> debug = !debug;
+                case "attack" -> plr1atk = true;
+                case "block", "defend" -> {
+                    idk.setBlock(playerX, playerY);
+                    playerBlock = 2;
+                }
+                case "mine" -> idk.mine(false, true, playerX, playerY);
             }
 
             System.out.println("red");
             input = in.nextLine();
 
-            if (input.equals("up")){
-                int targetY = player2Y - 1;
-                if (targetY >= 0) {
-                    //System.out.println(funnyConsoleExtras.ANSI_GREEN + input + funnyConsoleExtras.ANSI_RESET);
-                    //System.out.println(idk.getCellType(player2X, targetY, 0));
-                    if (idk.getCellType(player2X, targetY, 0) == 3 && idk.getCellType(player2X, targetY, 1) != 4) {
+            switch (input) {
+                case "up" -> {
+                    int targetY = player2Y - 1;
+                    if (targetY >= 0) {
+                        //System.out.println(funnyConsoleExtras.ANSI_GREEN + input + funnyConsoleExtras.ANSI_RESET);
                         //System.out.println(idk.getCellType(player2X, targetY, 0));
-                        idk.changeCell(player2X,targetY,CellTypes.playerSpec, CellTypes.hash, 4, 1);
-                        idk.changeCell(player2X,player2Y,CellTypes.baseSpec, CellTypes.hash, 0, 1);
-                        player2Y -= 1;
+                        if (idk.getCellType(player2X, targetY, 0) == 3 && idk.getCellType(player2X, targetY, 1) != 4) {
+                            //System.out.println(idk.getCellType(player2X, targetY, 0));
+                            idk.changeCell(player2X, targetY, CellTypes.playerSpec, CellTypes.hash, 4, 1);
+                            idk.changeCell(player2X, player2Y, CellTypes.baseSpec, CellTypes.hash, 0, 1);
+                            player2Y -= 1;
+                        }
                     }
                 }
-            } else if (input.equals("down")) {
-                int targetY = player2Y + 1;
-                if (targetY < sizeY) {
-                    //System.out.println(funnyConsoleExtras.ANSI_GREEN + input + funnyConsoleExtras.ANSI_RESET);
-                    //System.out.println(idk.getCellType(player2X, targetY, 0));
-                    if (idk.getCellType(player2X, targetY, 0) == 3 && idk.getCellType(player2X, targetY, 1) != 4) {
+                case "down" -> {
+                    int targetY = player2Y + 1;
+                    if (targetY < sizeY) {
+                        //System.out.println(funnyConsoleExtras.ANSI_GREEN + input + funnyConsoleExtras.ANSI_RESET);
                         //System.out.println(idk.getCellType(player2X, targetY, 0));
-                        idk.changeCell(player2X,targetY,CellTypes.playerSpec, CellTypes.hash, 4, 1);
-                        idk.changeCell(player2X,player2Y,CellTypes.baseSpec, CellTypes.hash, 0, 1);
-                        player2Y += 1;
+                        if (idk.getCellType(player2X, targetY, 0) == 3 && idk.getCellType(player2X, targetY, 1) != 4) {
+                            //System.out.println(idk.getCellType(player2X, targetY, 0));
+                            idk.changeCell(player2X, targetY, CellTypes.playerSpec, CellTypes.hash, 4, 1);
+                            idk.changeCell(player2X, player2Y, CellTypes.baseSpec, CellTypes.hash, 0, 1);
+                            player2Y += 1;
+                        }
                     }
                 }
-            } else if (input.equals("left")) {
-                int targetX = player2X - 1;
-                if (targetX >= 0) {
-                    //System.out.println(funnyConsoleExtras.ANSI_GREEN + input + funnyConsoleExtras.ANSI_RESET);
-                    //System.out.println(idk.getCellType(targetX, player2Y, 0));
-                    if (idk.getCellType(targetX, player2Y, 0) == 3 && idk.getCellType(targetX, player2Y, 1) != 4) {
+                case "left" -> {
+                    int targetX = player2X - 1;
+                    if (targetX >= 0) {
+                        //System.out.println(funnyConsoleExtras.ANSI_GREEN + input + funnyConsoleExtras.ANSI_RESET);
                         //System.out.println(idk.getCellType(targetX, player2Y, 0));
-                        idk.changeCell(targetX,player2Y,CellTypes.playerSpec, CellTypes.hash, 4, 1);
-                        idk.changeCell(player2X,player2Y,CellTypes.baseSpec, CellTypes.hash, 0, 1);
-                        player2X -= 1;
+                        if (idk.getCellType(targetX, player2Y, 0) == 3 && idk.getCellType(targetX, player2Y, 1) != 4) {
+                            //System.out.println(idk.getCellType(targetX, player2Y, 0));
+                            idk.changeCell(targetX, player2Y, CellTypes.playerSpec, CellTypes.hash, 4, 1);
+                            idk.changeCell(player2X, player2Y, CellTypes.baseSpec, CellTypes.hash, 0, 1);
+                            player2X -= 1;
+                        }
                     }
                 }
-            } else if (input.equals("right")) {
-                int targetX = player2X + 1;
-                if (targetX < sizeX) {
-                    //System.out.println(funnyConsoleExtras.ANSI_GREEN + input + funnyConsoleExtras.ANSI_RESET);
-                    //System.out.println(idk.getCellType(targetX, player2Y, 0));
-                    if (idk.getCellType(targetX, player2Y, 0) == 3 && idk.getCellType(targetX, player2Y, 1) != 4) {
+                case "right" -> {
+                    int targetX = player2X + 1;
+                    if (targetX < sizeX) {
+                        //System.out.println(funnyConsoleExtras.ANSI_GREEN + input + funnyConsoleExtras.ANSI_RESET);
                         //System.out.println(idk.getCellType(targetX, player2Y, 0));
-                        idk.changeCell(targetX,player2Y,CellTypes.playerSpec, CellTypes.hash, 4, 1);
-                        idk.changeCell(player2X,player2Y,CellTypes.baseSpec, CellTypes.hash, 0, 1);
-                        player2X += 1;
+                        if (idk.getCellType(targetX, player2Y, 0) == 3 && idk.getCellType(targetX, player2Y, 1) != 4) {
+                            //System.out.println(idk.getCellType(targetX, player2Y, 0));
+                            idk.changeCell(targetX, player2Y, CellTypes.playerSpec, CellTypes.hash, 4, 1);
+                            idk.changeCell(player2X, player2Y, CellTypes.baseSpec, CellTypes.hash, 0, 1);
+                            player2X += 1;
+                        }
                     }
                 }
-            } else if (input.equals("debug")) {
-                debug = !debug;
-            } else if (input.equals("attack")) {
-                plr2atk = true;
-            } else if (input.equals("block") || input.equals("defend")) {
-                idk.setBlock(player2X,player2Y);
-                player2Block = 2;
-            } else if (input.equals("mine")) {
-                idk.mine(false,true,player2X,player2Y);
+                case "debug" -> debug = !debug;
+                case "attack" -> plr2atk = true;
+                case "block", "defend" -> {
+                    idk.setBlock(player2X, player2Y);
+                    player2Block = 2;
+                }
+                case "mine" -> idk.mine(false, true, player2X, player2Y);
             }
             if (plr1atk) {
                 boolean hit = idk.attack(playerX,playerY,playerBlock,player2Block,turn);

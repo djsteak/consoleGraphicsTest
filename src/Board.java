@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Board {
-    private ArrayList<ArrayList<Cell>> boardArray;
+    private final ArrayList<ArrayList<Cell>> boardArray;
     private int xSize = 0;
     private int ySize = 0;
     
