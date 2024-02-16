@@ -25,6 +25,7 @@ public class Board {
         }
         boardArray = toBeAdded;
     }
+    // changes cell properties
 
     public void changeCell(int x,int y,String spec, String cha, int c, int l){// x and y is the cell to change. cha and spec are optional and will override the type (to not do them, just do "" for each). c is the type and l is the layer to apply the type to
         try {
@@ -95,14 +96,16 @@ public class Board {
             boardArray.get(y).get(x);
         } catch (Exception e) {}
     }
-
-    public boolean attack (int pointX, int pointY, int block1, int block2, boolean turn) {// id rather not explain (its to much effort)
+    // attacks in every adjacent square
+    public boolean attack (int pointX, int pointY, int block1, int block2, boolean turn) {
         System.out.println(turn + " " + block1 + " " + block2);
         try { // 8
             int targetX = pointX - 1;
             int targetY = pointY + 1;
             System.out.println(this.getCellType(targetX, targetY, 0));
+            // if the cell type is not 1 (wall) then continue
             if (this.getCellType(targetX, targetY, 0) != 1 ) {
+                //
                 if (this.getCellType(targetX, targetY, 1) == 4 || this.getCellType(targetX,targetY,1) == 2) {
                     if (turn){
                         if (block2 != 0) {

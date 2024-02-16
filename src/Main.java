@@ -26,7 +26,7 @@ public class Main {
         int sizeY = 7;
         boolean debug = false;
         Board idk = new Board(sizeX,sizeY);
-        idk.changeCell(0,0,CellTypes.playerSpec, CellTypes.hash, 2, 1);
+        idk.changeCell(0,0,CellTypes.playerSpec, CellTypes.hash, 2, 1); //walls
         idk.changeCell(1,0,CellTypes.baseSpec, CellTypes.wall, 1, 0);
         idk.changeCell(2,0,CellTypes.baseSpec, CellTypes.wall, 1, 0);
         idk.changeCell(1,2,CellTypes.baseSpec, CellTypes.wall, 1, 0);
@@ -37,7 +37,7 @@ public class Main {
         idk.changeCell(5,4,CellTypes.baseSpec, CellTypes.wall, 1, 0);
         idk.changeCell(sizeX - 1, sizeY - 1,"","",4,1);
 
-        System.out.println(idk.getCellType(sizeX - 1, sizeY - 1, 1));
+        //System.out.println(idk.getCellType(sizeX - 1, sizeY - 1, 1));
         idk.display(debug);// ---the method for displaying the game board
         int playerX = 0; // player positions are kept here, not the most reliable but its simple and good enough so im not changing it yet
         int playerY = 0;
